@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./reg-log.css";
-import pic5 from "../../images/kitchen-5.jpg";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { AiOutlineEye } from "react-icons/ai";
