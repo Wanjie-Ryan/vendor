@@ -15,7 +15,7 @@ function Register() {
     <>
       <section className="register">
         <div className="regsiter-container">
-          <p className="home-link title">Superb Kitchen</p>
+          <p className="home-link title">Superb Kitchen-Vendor</p>
           <p className="register-text">Register</p>
 
           <form className="form">
