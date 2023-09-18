@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./nav.css";
 import { Link } from "react-router-dom";
-import { BsPersonCircle} from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
 import { BiMenu } from "react-icons/bi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Cookies from "js-cookie";
@@ -24,19 +24,19 @@ function Navbar() {
 
           <div className="nav-main__right">
             <div className="nav-main__right__dashboard">
-              <Link to="/register" className="link-dashboard">
-                <p>Dashboard</p>
+              <Link to="/products" className="link-dashboard">
+                <p>Products</p>
               </Link>
             </div>
 
             <div className="nav-main__right__dashboard">
-              <Link to="/login" title="chats" className="link-dashboard">
+              <Link to="/wallet" title="chats" className="link-dashboard">
                 <p>Wallet</p>
               </Link>
             </div>
 
             <div className="nav-main__right__dashboard">
-              <Link to="/login" title="chats" className="link-dashboard">
+              <Link to="/sales" title="chats" className="link-dashboard">
                 <p>Sales</p>
               </Link>
             </div>
@@ -82,13 +82,13 @@ function Navbar() {
 
           <div className="main-aside__inner__botom">
             <div className="main-aside__inner__top__dashboard">
-              <Link to="/register" className="link-dashboard">
+              <Link to="/wallet" className="link-dashboard">
                 <p>Wallet</p>
               </Link>
             </div>
 
             <div className="main-aside__inner__top__dashboard">
-              <Link to="/login" title="chats" className="link-dashboard">
+              <Link to="/sales" title="chats" className="link-dashboard">
                 <p>Sales</p>
               </Link>
             </div>
