@@ -72,14 +72,59 @@ function PostProducts() {
           </form>)}
 
           {showTable &&(
+            <div className='table-container'>
           <table className='products-table'>
 
-            <th>
-                <td>Hey</td>
-            </th>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
 
-          </table>)}
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><img src=''alt='image' className='product-image'/></td>
+                    <td>Product-1</td>
+                    <td>ksh.10</td>
+                    <td>40</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Delete</button></td>
+
+
+
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td><img src=''alt='image' className='product-image'/></td>
+                    <td>Product-2</td>
+                    <td>ksh.10</td>
+                    <td>40</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Delete</button></td>
+
+
+
+                </tr>
+
+
+
+
+            </tbody>
+
+
+          </table>
+          </div>
+          )}
 </div>
         </div>
       </section>
