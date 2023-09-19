@@ -15,7 +15,7 @@ function Dashboard() {
                 <MdProductionQuantityLimits className="icon-products"/>
               </div>
               <div className="product-name">
-                <h3>Check Products</h3>
+                <Link to='/products' className="products-link"><h3>Check Products</h3></Link>
               </div>
             </div>
 
@@ -28,7 +28,7 @@ function Dashboard() {
                 <FaWallet className="icon-products"/>
               </div>
               <div className="product-name">
-                <h3>Your Wallet</h3>
+              <Link to='/wallet' className="products-link"><h3>Your Wallet</h3></Link>
               </div>
             </div>
 
@@ -41,7 +41,7 @@ function Dashboard() {
                 <FcSalesPerformance className="icon-products"/>
               </div>
               <div className="product-name">
-                <h3>Your Sales</h3>
+              <Link to='/sales' className="products-link"><h3>Your Sales</h3></Link>
               </div>
             </div>
 
