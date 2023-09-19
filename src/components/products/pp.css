@@ -1,64 +1,56 @@
-.post-products{
-    width: 100%;
-    min-height:100vh;
+.post-products {
+  width: 100%;
+  min-height: 100vh;
 }
 
-.post-products-inner{
-    width: 90%;
-    /* margin-left: auto;
+.post-products-inner {
+  width: 90%;
+  /* margin-left: auto;
     margin-right: auto; */
-    margin-top: 80px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.post-products-inner-headers{
-    display:flex;
-    gap:20rem;
+.post-products-inner-headers {
+  display: flex;
+  gap: 20rem;
 }
 
-.header-1{
-
-    transition:all 0.3s ease-in-out 0.5ms;
+.header-1 {
+  transition: all 0.3s ease-in-out 0.5ms;
 }
 
-.header-1:hover{
-    border-bottom: 1px solid black;
-    cursor:pointer;
- 
+.header-1:hover {
+  border-bottom: 1px solid black;
+  cursor: pointer;
 }
 
-.yes{
-    
-    transition:all 0.3s ease-in-out 0.5ms;
-
+.yes {
+  transition: all 0.3s ease-in-out 0.5ms;
 }
 
-.yes:hover{
-
-    color: #1e90ff;
+.yes:hover {
+  color: #1e90ff;
 }
 
-.create-product-section{
-    margin-top:70px;
-    display:flex;
-    flex-direction:column;
-    gap:30px;
+.create-product-section {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.product-name label{
-    font-size:17px;
-    font-weight:600;
-    margin-right:20px;
-    color: #1e90ff;
-
-
+.product-name label {
+  font-size: 17px;
+  font-weight: 600;
+  margin-right: 20px;
+  color: #1e90ff;
 }
 
-.product-name input{
-    width: 200px;
+.product-name input {
+  width: 200px;
   height: 30px;
   /* border: none; */
   border-radius: 6px;
@@ -66,16 +58,16 @@
 }
 
 .product-name input::placeholder {
-    font-weight: bold;
-  }
-  
-.product-name input:focus {
-    /* outline: none; */
-    border: #beadfa;
-  }
+  font-weight: bold;
+}
 
-.create-product-btn{
-    padding: 10px;
+.product-name input:focus {
+  /* outline: none; */
+  border: #beadfa;
+}
+
+.create-product-btn {
+  padding: 10px;
   margin-top: 10px;
   cursor: pointer;
   background-color: #fff89a;
@@ -83,4 +75,13 @@
   font-size: 18px;
   font-weight: bold;
 }
-  
+
+.content-container{
+    position:relative;
+}
+
+.products-table{
+    position:absolute;
+    top:0;
+    right:0;
+}

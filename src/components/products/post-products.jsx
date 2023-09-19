@@ -1,26 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
 import "./pp.css";
 import { Link } from "react-router-dom";
 
 function PostProducts() {
+
+    const [showForm, setShowForm] = useState(true)
+    const [showTable, setShowTable] = useState(false)
+
+    const handleShowForm = ()=>{
+        setShowForm(true);
+        setShowTable(false);
+    }
+
+    const handleShowTable = () => {
+        setShowForm(false);
+        setShowTable(true);
+      };
   return (
     <>
       <section className="post-products">
         <div className="post-products-inner">
           <div className="post-products-inner-headers">
             <div className="header-1">
-              <Link to="/products" className="products-link yes">
-                <h3>Create a Product</h3>
-              </Link>
+                <h3 className='yes' onClick={handleShowForm}>Create a Product</h3>
             </div>
-            <div className="header-1">
-              <Link to="/view-proucts" className="products-link yes">
-                <h3>View Your Products</h3>
-              </Link>
+            <div className="header-1" onClick={handleShowTable}>
+                <h3 className="yes">View Your Products</h3>
             </div>
           </div>
 
-          <form className="create-product-section">
+        <div className="content-container">
+          {showForm &&(<form className="create-product-section">
             <div className="product-name">
               <label>Product Image</label>
               <input
@@ -59,7 +69,18 @@ function PostProducts() {
             </div>
 
             <button className="create-product-btn">Create</button>
-          </form>
+          </form>)}
+
+          {showTable &&(
+          <table className='products-table'>
+
+            <th>
+                <td>Hey</td>
+            </th>
+
+
+          </table>)}
+</div>
         </div>
       </section>
     </>
