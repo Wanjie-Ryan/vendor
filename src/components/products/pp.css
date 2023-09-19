@@ -1,0 +1,42 @@
+.post-products{
+    width: 100%;
+    min-height:100vh;
+}
+
+.post-products-inner{
+    width: 90%;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin-top: 80px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.post-products-inner-headers{
+    display:flex;
+    gap:20rem;
+}
+
+.header-1{
+
+    transition:all 0.3s ease-in-out 0.5ms;
+}
+
+.header-1:hover{
+    border-bottom: 1px solid black;
+    cursor:pointer;
+ 
+}
+
+.yes{
+    
+    transition:all 0.3s ease-in-out 0.5ms;
+
+}
+
+.yes:hover{
+
+    color: #1e90ff;
+}
