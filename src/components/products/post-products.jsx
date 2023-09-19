@@ -58,7 +58,7 @@ function PostProducts() {
               />
             </div>
 
-            <button>Create</button>
+            <button className="create-product-btn">Create</button>
           </form>
         </div>
       </section>
