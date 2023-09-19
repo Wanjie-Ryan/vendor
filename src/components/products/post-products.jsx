@@ -28,6 +28,55 @@ function PostProducts (){
 
                     </div>
 
+                    <form className='create-product-section'>
+
+                        <div className='product-name'>
+                            <label>Product Image</label>
+                            <input
+                  type="file"
+                  id="imageFile"
+                  accept="image/*"
+                  required
+                  
+                //   onChange={(e) => {
+                //     setImage(e.target.files[0]);
+                //   }}
+                />
+
+                        </div>
+
+                        <div className='product-name'>
+                            <label>Product Name</label>
+                            <input type='text' required placeholder='name of the product'/>
+
+
+                        </div>
+
+                        <div className='product-name'>
+                            <label>Product Price</label>
+                            <input type='text' required placeholder='price of the product in ksh.'/>
+
+
+                        </div>
+
+                        <div className='product-name'>
+                            <label>Quantity</label>
+                            <input type='number' required placeholder='number of items in your store'/>
+
+
+                        </div>
+
+                        <button>Create</button>
+
+
+
+
+
+
+
+
+                    </form>
+
                     
 
 
