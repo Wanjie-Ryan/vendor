@@ -40,3 +40,21 @@
 
     color: #1e90ff;
 }
+
+.create-product-section{
+    margin-top:70px;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.product-name label{
+    font-size:17px;
+    font-weight:600;
+    margin-right:20px;
+
+}
+
+.product-name input{
+    
+}
