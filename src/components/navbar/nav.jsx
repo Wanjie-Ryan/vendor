@@ -17,7 +17,7 @@ function Navbar() {
       <nav className="nav-main">
         <div className="nav-main__nav-inner">
           <div className="nav-main__left">
-            <Link to="/" className="home-link">
+            <Link to="/dashboard" className="home-link">
               <h2>Superb Kitchen-Vendor</h2>
             </Link>
           </div>
