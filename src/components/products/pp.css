@@ -96,11 +96,66 @@
   margin-top: 20px;
 }
 
+.product-image{
+    width:70px;
+    height:60px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
 .products-table th,
 .products-table td {
   padding: 20px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+}
+
+.table-btns{
+    margin-top:40px;
+    display:flex;
+    gap:10px;
+}
+
+.csv{
+    padding:5px;
+    cursor: pointer;
+  background-color: #fff89a;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pdf{
+
+    padding:5px;
+    cursor: pointer;
+    background-color: #f0b4b4;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+.edit{
+
+    padding:5px;
+    cursor: pointer;
+  background-color: #fff89a;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+.delete{
+
+    padding:5px;
+    cursor: pointer;
+    background-color: #d30e39;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+
 }
 
 

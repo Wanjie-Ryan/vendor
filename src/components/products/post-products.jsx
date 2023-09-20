@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import "./pp.css";
-import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";  
+import pic1 from '../../images/kitchen-1.jpg'
+import {FaFileCsv} from 'react-icons/fa'
+import {BsFillFileEarmarkPdfFill} from 'react-icons/bs'
 function PostProducts() {
 
     const [showForm, setShowForm] = useState(true)
@@ -73,6 +75,11 @@ function PostProducts() {
 
           {showTable &&(
             <div className='table-container'>
+                <div className='table-btns'>
+
+                <button className='csv'><FaFileCsv/> Export as CSV</button>
+                <button className='pdf'><BsFillFileEarmarkPdfFill/>Export as PDF</button>
+                </div>
           <table className='products-table'>
 
             <thead>
@@ -92,12 +99,12 @@ function PostProducts() {
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td><img src=''alt='image' className='product-image'/></td>
+                    <td><img src={pic1}alt='image' className='product-image'/></td>
                     <td>Product-1</td>
                     <td>ksh.10</td>
                     <td>40</td>
-                    <td><button>Edit</button></td>
-                    <td><button>Delete</button></td>
+                    <td><button className='edit'>Edit</button></td>
+                    <td><button className='delete'>Delete</button></td>
 
 
 
@@ -105,12 +112,12 @@ function PostProducts() {
 
                 <tr>
                     <td>2</td>
-                    <td><img src=''alt='image' className='product-image'/></td>
+                    <td><img src={pic1}alt='image' className='product-image'/></td>
                     <td>Product-2</td>
                     <td>ksh.10</td>
                     <td>40</td>
-                    <td><button>Edit</button></td>
-                    <td><button>Delete</button></td>
+                    <td><button className='edit'>Edit</button></td>
+                    <td><button className='delete'>Delete</button></td>
 
 
 
