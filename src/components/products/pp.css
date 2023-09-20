@@ -76,31 +76,30 @@
   font-weight: bold;
 }
 
-.content-container{
-    position:relative;
+.content-container {
+  position: relative;
 }
 
-
-.table-container{
-    overflow-x: auto;
-    /* display:flex;
+.table-container {
+  overflow-x: auto;
+  /* display:flex;
     justify-content:center;
     align-items:center; */
 }
-.products-table{
-    position:absolute;
-    top:50px;
-    right:-290px;
-    width: 90%;
+.products-table {
+  position: absolute;
+  top: 50px;
+  right: -290px;
+  width: 90%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-.product-image{
-    width:70px;
-    height:60px;
-    object-fit: cover;
-    border-radius: 20px;
+.product-image {
+  width: 70px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 .products-table th,
@@ -110,93 +109,82 @@
   border-bottom: 1px solid #ddd;
 }
 
-.table-btns{
-    margin-top:40px;
-    display:flex;
-    gap:10px;
+.table-btns {
+  margin-top: 40px;
+  display: flex;
+  gap: 10px;
 }
 
-.csv{
-    padding:5px;
-    cursor: pointer;
+.csv {
+  padding: 5px;
+  cursor: pointer;
   background-color: #fff89a;
   border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
 }
 
-.pdf{
-
-    padding:5px;
-    cursor: pointer;
-    background-color: #f0b4b4;
+.pdf {
+  padding: 5px;
+  cursor: pointer;
+  background-color: #f0b4b4;
   border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
-
 }
 
-.edit{
-
-    padding:5px;
-    cursor: pointer;
+.edit {
+  padding: 5px;
+  cursor: pointer;
   background-color: #fff89a;
   border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
-
 }
 
-.delete{
-
-    padding:5px;
-    cursor: pointer;
-    background-color: #d30e39;
+.delete {
+  padding: 5px;
+  cursor: pointer;
+  background-color: #d30e39;
   border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
-
 }
-
 
 @media screen and (max-width: 568px) {
-
-    .post-products-inner{
-        width:100%;
-    }
-
-    .post-products-inner-headers{
-        gap:2rem;
-    }
-
-    .table-container{
-        overflow-x: auto;
-    }
-
-
-    .products-table {
-        overflow-x: auto;
-
-        top:100px;
-        margin-top:20px;
-        right:-50px;
-      font-size: 14px;
-    }
-  
-    .products-table th,
-    .products-table td {
-      padding: 5px;
-    }
+  .post-products-inner {
+    width: 100%;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 912px) {
-
-    .products-table {
-        overflow-x: auto;
-
-        top:100px;
-        margin-top:20px;
-        right:-200px;
-    }
+  .post-products-inner-headers {
+    gap: 2rem;
   }
-  
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .products-table {
+    overflow-x: auto;
+
+    top: 100px;
+    margin-top: 20px;
+    right: -50px;
+    font-size: 14px;
+  }
+
+  .products-table th,
+  .products-table td {
+    padding: 5px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 912px) {
+  .products-table {
+    overflow-x: auto;
+
+    top: 100px;
+    margin-top: 20px;
+    right: -200px;
+  }
+}
