@@ -160,7 +160,26 @@
 
 
 @media screen and (max-width: 568px) {
+
+    .post-products-inner{
+        width:100%;
+    }
+
+    .post-products-inner-headers{
+        gap:2rem;
+    }
+
+    .table-container{
+        overflow-x: auto;
+    }
+
+
     .products-table {
+        overflow-x: auto;
+
+        top:100px;
+        margin-top:20px;
+        right:-50px;
       font-size: 14px;
     }
   
@@ -169,3 +188,15 @@
       padding: 5px;
     }
   }
+
+  @media screen and (min-width: 768px) and (max-width: 912px) {
+
+    .products-table {
+        overflow-x: auto;
+
+        top:100px;
+        margin-top:20px;
+        right:-200px;
+    }
+  }
+  
