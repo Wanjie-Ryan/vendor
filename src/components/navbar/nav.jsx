@@ -14,7 +14,7 @@ function Navbar() {
 
   const LogDetails = JSON.parse(sessionStorage.getItem("VendorLoginDetails"));
 
-  let username
+  let username;
 
   if (LogDetails) {
     username = LogDetails.name;
@@ -82,7 +82,9 @@ function Navbar() {
                   <BsPersonCircle />
                 )}
               </Link>
-              <p>{greeting} {username}</p>
+              <p>
+                {greeting} {username}
+              </p>
             </div>
 
             <div className="nav-main__right__dashboard-menu">
@@ -130,7 +132,10 @@ function Navbar() {
                   <BsPersonCircle />
                 )}
               </Link>
-              <p> {greeting} {username}</p>
+              <p>
+                {" "}
+                {greeting} {username}
+              </p>
             </div>
 
             <div className="main-aside__inner__top__logout">
