@@ -72,6 +72,14 @@ function Login() {
 
       toast.success("Login Successful");
 
+      setTimeout(()=>{
+
+        navigate('/dashboard')
+
+      },1000)
+
+      setLoad(false)
+
 
 
 
@@ -82,10 +90,35 @@ function Login() {
     }
     catch(err){
 
+      dispatch({ type: "logFail", payload: err });
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (pwd.length < 5) {
+        toast.error(
+          "Password is too short. Please enter at least 5 characters."
+        );
+        setLoad(false);
+
+        return;
+      } else if (!emailRegex.test(email)) {
+        toast.error("Invalid email address. Please enter a valid email.");
+        setLoad(false);
+
+        return;
+      } else {
+        seterrMsg("Invalid Credetials!");
+
+        toast.error(errMsg);
+        setLoad(false);
+      }
+
 
     }
 
     finally{
+
+      setLoad(false);
 
     }
 
