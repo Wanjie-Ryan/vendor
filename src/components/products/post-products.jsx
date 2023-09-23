@@ -10,12 +10,14 @@ import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 function PostProducts() {
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuth = async () => {
-      if (!Cookies.get().vendorToken || Cookies.get().vendorToken === undefined) {
+      if (
+        !Cookies.get().vendorToken ||
+        Cookies.get().vendorToken === undefined
+      ) {
         navigate("/login");
       } else {
         const token = Cookies.get().vendorToken;
@@ -36,7 +38,6 @@ function PostProducts() {
     checkAuth();
   }, [navigate]);
 
-
   const [showForm, setShowForm] = useState(true);
   const [showTable, setShowTable] = useState(false);
 
@@ -50,45 +51,44 @@ function PostProducts() {
     setShowTable(true);
   };
 
-  const [image, setImage] = useState()
-  const [name, setName] = useState()
-  const [price, setPrice] = useState()
-  const [quantity, setQuantity] = useState()
-  const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState();
+  const [name, setName] = useState();
+  const [price, setPrice] = useState();
+  const [quantity, setQuantity] = useState();
+  const [loading, setLoading] = useState(false);
 
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
 
-  const handleName =(e)=>{
-    setName(e.target.value)
-  }
+  const handlePrice = (e) => {
+    setPrice(e.target.value);
+  };
 
-  const handlePrice =(e)=>{
-    setPrice(e.target.value)
-  }
+  const handleQuantity = (e) => {
+    setQuantity(e.target.value);
+  };
 
-  const handleQuantity = (e)=>{
-    setQuantity(e.target.value)
-  }
-
-  const VendorDetails = JSON.parse(sessionStorage.getItem("VendorLoginDetails"));
+  const VendorDetails = JSON.parse(
+    sessionStorage.getItem("VendorLoginDetails")
+  );
   let id;
 
   id = VendorDetails.id;
 
-  const CreateProduct = async(e)=>{
+  const CreateProduct = async (e) => {
+    e.preventDefault();
 
-    e.preventDefault()
-
-    if(!image || !name || !price|| !quantity){
-       toast.error('All fields are reuired!')
-       return
+    if (!image || !name || !price || !quantity) {
+      toast.error("All fields are reuired!");
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
-    try{
-
+    try {
       const token = Cookies.get().vendorToken;
-      const formData = new FormData()
+      const formData = new FormData();
       formData.append("file", image);
 
       formData.append("upload_preset", "pq4z6rjr");
@@ -101,37 +101,29 @@ function PostProducts() {
       // console.log(imageData)
 
       const productData = {
-        createdBy:id,
-        image:imageData.data.secure_url,
-        name:name,
-        price:price,
-        quantity:quantity
+        createdBy: id,
+        image: imageData.data.secure_url,
+        name: name,
+        price: price,
+        quantity: quantity,
+      };
 
-      }
-
-      const response = await axios.post('http://localhost:3005/api/vendor/products/createproduct', {productData:productData}, {headers:{Authorization:`Bearer ${token}`}})
+      const response = await axios.post(
+        "http://localhost:3005/api/vendor/products/createproduct",
+        { productData: productData },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
       // console.log(response)
 
-      
       toast.success("Product Created Successfully");
 
-      setLoading(false)
+      setLoading(false);
 
-      window.location.reload()
-
-
-
-
-
-
-    }
-
-    catch(err){
-
+      window.location.reload();
+    } catch (err) {
       // console.log(err)
 
-      
       if (err.response.status === 401) {
         toast.error("Not Authorized to create project");
         navigate("/login");
@@ -140,27 +132,10 @@ function PostProducts() {
       } else if (err.response.status === 500) {
         toast.error("A problem with our servers, hang on");
       }
-    }
-
-     finally {
+    } finally {
       setLoading(false);
     }
-
-
-
-
-    
-
-   
-
-
-
-
-
-
-
-
-  }
+  };
   return (
     <>
       <section className="post-products">
@@ -186,9 +161,9 @@ function PostProducts() {
                     id="imageFile"
                     accept="image/*"
                     required
-                      onChange={(e) => {
-                        setImage(e.target.files[0]);
-                      }}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                    }}
                   />
                 </div>
 
@@ -225,11 +200,13 @@ function PostProducts() {
                   />
                 </div>
 
-                <button className="create-product-btn">{loading ? (
-                <AiOutlineLoading3Quarters className="loading-icon" />
-              ) : (
-                "Create"
-              )}</button>
+                <button className="create-product-btn">
+                  {loading ? (
+                    <AiOutlineLoading3Quarters className="loading-icon" />
+                  ) : (
+                    "Create"
+                  )}
+                </button>
               </form>
             )}
 
