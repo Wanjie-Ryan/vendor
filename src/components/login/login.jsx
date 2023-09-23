@@ -31,6 +31,35 @@ function Login() {
     setPwd(e.target.value);
   };
 
+  const handleLogin = async(e)=>{
+
+    e.preventDefault();
+
+    if (!email || !pwd) {
+      toast.error("Please fill all the fields");
+    }
+
+    setLoad(true);
+
+    dispatch({ type: "logStart" });
+
+
+    try{
+
+
+    }
+    catch(err){
+
+
+    }
+
+    finally{
+      
+    }
+
+
+  }
+
   return (
     <>
       <section className="register">
@@ -38,7 +67,7 @@ function Login() {
           <p className="home-link title">Superb Kitchen-Vendor</p>
           <p className="register-text">Login</p>
 
-          <form className="form">
+          <form className="form"  onSubmit={handleLogin}>
             <div className="form-container">
               <div className="name-label">
                 <label>Email</label>
