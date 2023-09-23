@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 function UpdateModal({ isOpen, onClose, id }) {
-//   const [image, setImage] = useState();
+  //   const [image, setImage] = useState();
   const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [quantity, setQuantity] = useState();
@@ -36,15 +36,15 @@ function UpdateModal({ isOpen, onClose, id }) {
 
     try {
       const token = Cookies.get().vendorToken;
-    //   const formData = new FormData();
-    //   formData.append("file", image);
+      //   const formData = new FormData();
+      //   formData.append("file", image);
 
-    //   formData.append("upload_preset", "pq4z6rjr");
+      //   formData.append("upload_preset", "pq4z6rjr");
 
-    //   const imageData = await axios.post(
-    //     "https://api.cloudinary.com/v1_1/djgk2k4sw/image/upload",
-    //     formData
-    //   );
+      //   const imageData = await axios.post(
+      //     "https://api.cloudinary.com/v1_1/djgk2k4sw/image/upload",
+      //     formData
+      //   );
 
       const productUpdateData = {
         // image: imageData.data.secure_url,
@@ -59,7 +59,7 @@ function UpdateModal({ isOpen, onClose, id }) {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-    //   console.log(response)
+      //   console.log(response)
 
       toast.success("Product was updated successfully");
 
@@ -67,7 +67,7 @@ function UpdateModal({ isOpen, onClose, id }) {
 
       window.location.reload();
     } catch (err) {
-    //   console.log(err);
+      //   console.log(err);
       if (err.response.status === 401) {
         toast.error("Not Authorized");
         navigate("/login");
