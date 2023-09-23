@@ -118,7 +118,7 @@ function UpdateModal({ isOpen, onClose, id }) {
             </div>
           </nav>
 
-          <div className="modal-main-container">
+          <form className="modal-main-container" onSubmit={handleProductUpdate}>
             <div className="name-container">
               <label>Product Image</label>
               <input type="file" id="imageFile" accept="image/*" onChange={(e) => {
@@ -138,7 +138,6 @@ function UpdateModal({ isOpen, onClose, id }) {
               <input type="number" placeholder='number of items in the store' value={quantity}
                     onChange={handleQuantity} />
             </div>
-          </div>
           <div className='btn-div'>
             <button className="okay-btn" onClick={onClose}>
             {loading ? (
@@ -148,6 +147,7 @@ function UpdateModal({ isOpen, onClose, id }) {
                   )}
           </button>
           </div>
+          </form>
         </div>
       </Modal>
     </>
