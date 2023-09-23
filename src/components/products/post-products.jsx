@@ -98,7 +98,7 @@ function PostProducts() {
         formData
       );
 
-      console.log(imageData)
+      // console.log(imageData)
 
       const productData = {
         createdBy:id,
@@ -111,12 +111,14 @@ function PostProducts() {
 
       const response = await axios.post('http://localhost:3005/api/vendor/products/createproduct', {productData:productData}, {headers:{Authorization:`Bearer ${token}`}})
 
-      console.log(response)
+      // console.log(response)
 
       
       toast.success("Product Created Successfully");
 
       setLoading(false)
+
+      window.location.reload()
 
 
 
@@ -127,17 +129,29 @@ function PostProducts() {
 
     catch(err){
 
-      console.log(err)
+      // console.log(err)
 
       
-
-
+      if (err.response.status === 401) {
+        toast.error("Not Authorized to create project");
+        navigate("/login");
+      } else if (err.response.status === 404) {
+        toast.error("User cannot be found");
+      } else if (err.response.status === 500) {
+        toast.error("A problem with our servers, hang on");
+      }
     }
 
-    finally{
-
-
+     finally {
+      setLoading(false);
     }
+
+
+
+
+    
+
+   
 
 
 
@@ -211,7 +225,11 @@ function PostProducts() {
                   />
                 </div>
 
-                <button className="create-product-btn">Create</button>
+                <button className="create-product-btn">{loading ? (
+                <AiOutlineLoading3Quarters className="loading-icon" />
+              ) : (
+                "Create"
+              )}</button>
               </form>
             )}
 
