@@ -164,13 +164,14 @@ function PostProducts() {
     UserProducts();
   }, []);
 
-  const handleDelete = async(productId) =>{
-
-    try{
-
+  const handleDelete = async (productId) => {
+    try {
       const token = Cookies.get().vendorToken;
 
-      const deleteProduct = await axios.delete(`http://localhost:3005/api/vendor/products/deleteproduct/${productId}`, { headers: { Authorization: `Bearer ${token}` } })
+      const deleteProduct = await axios.delete(
+        `http://localhost:3005/api/vendor/products/deleteproduct/${productId}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
       // console.log(deleteProduct)
 
@@ -178,13 +179,8 @@ function PostProducts() {
         toast.success("Product was deleted successfully");
       }
 
-      window.location.reload()
-
-
-
-    }
-
-    catch(err){
+      window.location.reload();
+    } catch (err) {
       // console.log(err)
 
       if (err.response.status === 401) {
@@ -198,10 +194,7 @@ function PostProducts() {
         toast.error("Check your network connection");
       }
     }
-
-
-
-  }
+  };
   return (
     <>
       <section className="post-products">
@@ -320,7 +313,14 @@ function PostProducts() {
                             <button className="edit">Edit</button>
                           </td>
                           <td>
-                            <button className="delete" onClick={()=>{handleDelete(item._id)}}>Delete</button>
+                            <button
+                              className="delete"
+                              onClick={() => {
+                                handleDelete(item._id);
+                              }}
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
                       ))
