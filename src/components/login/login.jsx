@@ -46,6 +46,38 @@ function Login() {
 
     try{
 
+      const LoginData = {
+        email: email,
+        password: pwd,
+      };
+
+      const response = await axios.post(
+        "http://localhost:3005/api/vendor/auth/login",
+        LoginData
+      );
+
+      // console.log(response)
+
+      const loginDetails = {
+        id: response.data.UserLogin._id,
+        name: response.data.UserLogin.name,
+      };
+
+      sessionStorage.setItem("VendorLoginDetails", JSON.stringify(loginDetails));
+      const LoginToken = response.data.vendorToken;
+
+      Cookies.set("vendorToken", LoginToken);
+
+      dispatch({ type: "logComplete", payload: response.data });
+
+      toast.success("Login Successful");
+
+
+
+
+
+
+
 
     }
     catch(err){
@@ -54,7 +86,7 @@ function Login() {
     }
 
     finally{
-      
+
     }
 
 
