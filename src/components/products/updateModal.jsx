@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import "./updateModal.css";
 import Modal from "react-modal";
 import { AiOutlineClose } from "react-icons/ai";
+import axios from 'axios'
 
 function UpdateModal({ isOpen, onClose, id }) {
   if (!isOpen) {
