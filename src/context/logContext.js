@@ -40,7 +40,7 @@ export const LogContextProvider = ({ children }) => {
   return (
     <LogContext.Provider
       value={{
-        user: state.user,
+        vendor: state.vendor,
         loading: state.loading,
         error: state.error,
         dispatch,
