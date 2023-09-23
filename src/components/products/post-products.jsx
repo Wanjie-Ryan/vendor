@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./pp.css";
 import { AiOutlineEye, AiOutlineLoading3Quarters } from "react-icons/ai";
 import pic1 from "../../images/kitchen-1.jpg";
@@ -8,8 +8,35 @@ import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
-
+import { useNavigate } from "react-router-dom";
 function PostProducts() {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (!Cookies.get().vendorToken || Cookies.get().vendorToken === undefined) {
+        navigate("/login");
+      } else {
+        const token = Cookies.get().vendorToken;
+
+        const res = await axios({
+          method: "get",
+          url: "http://localhost:3005/api/vendor/auth/verify",
+          headers: { Authorization: "Bearer " + token },
+          data: {},
+        });
+
+        if (res.data.type !== "success") {
+          navigate("/login");
+        }
+      }
+    };
+
+    checkAuth();
+  }, [navigate]);
+
+
   const [showForm, setShowForm] = useState(true);
   const [showTable, setShowTable] = useState(false);
 
@@ -27,6 +54,7 @@ function PostProducts() {
   const [name, setName] = useState()
   const [price, setPrice] = useState()
   const [quantity, setQuantity] = useState()
+  const [loading, setLoading] = useState(false)
 
 
   const handleName =(e)=>{
@@ -41,6 +69,11 @@ function PostProducts() {
     setQuantity(e.target.value)
   }
 
+  const VendorDetails = JSON.parse(sessionStorage.getItem("VendorLoginDetails"));
+  let id;
+
+  id = VendorDetails.id;
+
   const CreateProduct = async(e)=>{
 
     e.preventDefault()
@@ -50,14 +83,53 @@ function PostProducts() {
        return
     }
 
+    setLoading(true)
+
     try{
 
+      const token = Cookies.get().vendorToken;
+      const formData = new FormData()
+      formData.append("file", image);
+
+      formData.append("upload_preset", "pq4z6rjr");
+
+      const imageData = await axios.post(
+        "https://api.cloudinary.com/v1_1/djgk2k4sw/image/upload",
+        formData
+      );
+
+      console.log(imageData)
+
+      const productData = {
+        createdBy:id,
+        image:imageData.data.secure_url,
+        name:name,
+        price:price,
+        quantity:quantity
+
+      }
+
+      const response = await axios.post('http://localhost:3005/api/vendor/products/createproduct', {productData:productData}, {headers:{Authorization:`Bearer ${token}`}})
+
+      console.log(response)
+
       
+      toast.success("Product Created Successfully");
+
+      setLoading(false)
+
+
+
+
 
 
     }
 
     catch(err){
+
+      console.log(err)
+
+      
 
 
     }
