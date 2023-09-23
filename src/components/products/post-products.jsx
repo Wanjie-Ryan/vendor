@@ -9,8 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import UpdateProductModal from './updateModal'
-import jsPDF from 'jspdf';
+import UpdateProductModal from "./updateModal";
+import jsPDF from "jspdf";
 
 function PostProducts() {
   const navigate = useNavigate();
@@ -199,30 +199,31 @@ function PostProducts() {
     }
   };
 
-
   const [selectedProductId, setSelectedProductId] = useState(null);
-  const [showUpdateModal, setShowUpdateModal] = useState(false)
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
-  const openModal = (productId)=>{
-    setSelectedProductId(productId)
-    setShowUpdateModal(true)
-  }
+  const openModal = (productId) => {
+    setSelectedProductId(productId);
+    setShowUpdateModal(true);
+  };
 
-  const closeModal = ()=>{
-    setSelectedProductId(null)
-    setShowUpdateModal(false)
-  }
+  const closeModal = () => {
+    setSelectedProductId(null);
+    setShowUpdateModal(false);
+  };
 
-  const generatePDF = ()=>{
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    //respresents the pdf document
 
-    const doc = new jsPDF()
+    doc.text("Product List", 10, 10);
+    //adds the title 'product list at coordinates 10,10'
 
-    doc.text('Product List', 10, 10);
-
-    let y = 20
+    let y = 20;
+    //initialize vertical position y
 
     products.forEach((product, index) => {
-      y += 10; 
+      y += 10;
       doc.text(`Product ${index + 1}:`, 10, y);
       y += 5;
       doc.text(`Name: ${product.name}`, 15, y);
@@ -230,16 +231,20 @@ function PostProducts() {
       doc.text(`Price: ksh ${product.price}`, 15, y);
       y += 5;
       doc.text(`Quantity: ${product.quantity}`, 15, y);
-      y += 10; 
+      y += 10;
     });
 
+    //the above part iterates through each product in the products array
+    // for each product, it pperforms the following function:
+    // increases y coordinate by 10 units to move down to the next position
+    //Adds product number eg. product 1 at coordinates (10,y)
+    // increases y coordinate by 5 units to create space between lines
+    // adds product name at coordinates (15,y)
+    //repeats process for price and quantity
+    // adds additional 10 units to y coordinate to create space between products
 
-
-    doc.save('your_product_list.pdf');
-
-
-
-  }
+    doc.save("your_product_list.pdf");
+  };
 
   return (
     <>
@@ -356,7 +361,14 @@ function PostProducts() {
                           <td>ksh {item.price}</td>
                           <td>{item.quantity}</td>
                           <td>
-                            <button className="edit" onClick={()=>{openModal(item._id)}}>Edit</button>
+                            <button
+                              className="edit"
+                              onClick={() => {
+                                openModal(item._id);
+                              }}
+                            >
+                              Edit
+                            </button>
                           </td>
                           <td>
                             <button
@@ -379,7 +391,11 @@ function PostProducts() {
         </div>
       </section>
 
-      <UpdateProductModal isOpen={showUpdateModal} onClose={closeModal} id={selectedProductId}/>
+      <UpdateProductModal
+        isOpen={showUpdateModal}
+        onClose={closeModal}
+        id={selectedProductId}
+      />
     </>
   );
 }
