@@ -2,16 +2,14 @@ import React, { useState, useContext } from "react";
 import "./reg-log.css";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { AiOutlineEye, AiOutlineLoading3Quarters  } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { RegContext } from "../../context/regContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from 'axios'
+import axios from "axios";
 function Register() {
-
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -35,7 +33,6 @@ function Register() {
     setEmail(e.target.value);
   };
 
-
   const handleContact = (phoneNumber) => {
     setContact(phoneNumber);
   };
@@ -44,10 +41,10 @@ function Register() {
     setPwd(e.target.value);
   };
 
-  const handleRegistration = async(e)=>{
+  const handleRegistration = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !contact  || !pwd) {
+    if (!name || !email || !contact || !pwd) {
       toast.error("Please fill in all the fields");
       return;
     }
@@ -56,10 +53,8 @@ function Register() {
 
     dispatch({ type: "regStart" });
 
-    try{
-
+    try {
       const registrationData = {
-
         name: name,
         email: email,
         contact: contact,
@@ -82,12 +77,7 @@ function Register() {
       }, 1000);
 
       setLoad(false);
-
-
-    }
-
-    catch(err){
-
+    } catch (err) {
       dispatch({ type: "regFail", payload: err });
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -111,18 +101,10 @@ function Register() {
         toast.error(errormsg);
         setLoad(false);
       }
-
-
-
+    } finally {
+      setLoad(false);
     }
-    finally{
-
-      setLoad(false)
-
-    }
-
-
-  }
+  };
 
   return (
     <>
@@ -137,7 +119,13 @@ function Register() {
                 <label>Name</label>
               </div>
               <div className="input-container">
-                <input type="text" placeholder="enter your name" required value={name}  onChange={handleName}/>
+                <input
+                  type="text"
+                  placeholder="enter your name"
+                  required
+                  value={name}
+                  onChange={handleName}
+                />
               </div>
             </div>
 
@@ -146,13 +134,17 @@ function Register() {
                 <label>Email</label>
               </div>
               <div className="input-container">
-                <input type="email" placeholder="enter your Email" required  value={email}
-                onChange={handleEmail}/>
+                <input
+                  type="email"
+                  placeholder="enter your Email"
+                  required
+                  value={email}
+                  onChange={handleEmail}
+                />
               </div>
             </div>
 
             <div className="form-container">
-              
               <div className="input-container">
                 <PhoneInput
                   placeholder="Your Phone Number"
@@ -169,14 +161,19 @@ function Register() {
                 <label>Password</label>
               </div>
               <div className="input-container-pwd">
-                <input type={checkpwd ? "text" : "password"} placeholder="enter your Password" required value={pwd}
-                  onChange={handlePwd} />
-                <AiOutlineEye className="toggle-password" onClick={TogglePwd}/>
+                <input
+                  type={checkpwd ? "text" : "password"}
+                  placeholder="enter your Password"
+                  required
+                  value={pwd}
+                  onChange={handlePwd}
+                />
+                <AiOutlineEye className="toggle-password" onClick={TogglePwd} />
               </div>
             </div>
 
             <button type="submit" className="submit-btn">
-            {load ? (
+              {load ? (
                 <AiOutlineLoading3Quarters className="loading-icon" />
               ) : (
                 "Let's Go"
