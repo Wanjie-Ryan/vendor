@@ -246,27 +246,27 @@ function PostProducts() {
     doc.save("your_product_list.pdf");
   };
 
-  const GenerateCSV = () =>{
-    const csvData = products.map((item)=>{
-      return `${item.name}, ${item.price}, ${item.quantity}`
-    })
+  const GenerateCSV = () => {
+    const csvData = products.map((item) => {
+      return `${item.name}, ${item.price}, ${item.quantity}`;
+    });
 
-    const csv = ['Name, Price, Quantity', ...csvData].join('\n')
+    const csv = ["Name, Price, Quantity", ...csvData].join("\n");
 
-    const blob = new Blob([csv],{type:'text/csv'})
+    const blob = new Blob([csv], { type: "text/csv" });
 
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.style.display = 'none'
-    a.href = url
-    a.download = 'your_product_list.csv'
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = "your_product_list.csv";
 
-    document.body.appendChild(a)
-    a.click()
+    document.body.appendChild(a);
+    a.click();
 
-    window.URL.revokeObjectURL(url)
-    document.body.removeChild(a)
-  }
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
 
   return (
     <>
