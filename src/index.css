@@ -6,3 +6,9 @@
   box-sizing: border-box;
   font-family: "Exo 2", sans-serif;
 }
+
+.toast-container {
+  top: 10% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}

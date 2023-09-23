@@ -1,11 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./reg-log.css";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { AiOutlineEye } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { AiOutlineEye, AiOutlineLoading3Quarters  } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
+import { RegContext } from "../../context/regContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios'
 function Register() {
+
+  const navigate = useNavigate()
+
+
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
   const [contact, setContact] = useState("+254");
+  const [pwd, setPwd] = useState();
+  const [checkpwd, setCheckpwd] = useState(false);
+  const [load, setLoad] = useState(false);
+  const [errormsg, setErrormsg] = useState();
+
+  const { user, loading, error, dispatch } = useContext(RegContext);
+
+
   const handleContact = (phoneNumber) => {
     setContact(phoneNumber);
   };
