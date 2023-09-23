@@ -31,22 +31,24 @@ function UpdateModal({ isOpen, onClose, id }) {
           <div className="modal-main-container">
             <div className="name-container">
               <label>Product Image</label>
-              <img type="file" id="imageFile" accept="image/*" />
+              <input type="file" id="imageFile" accept="image/*" />
             </div>
             <div className="name-container">
               <label>Product Name</label>
-              <img type="text" placeholder='name of the product'  />
+              <input type="text" placeholder='name of the product'  />
             </div><div className="name-container">
               <label>Product Price</label>
-              <img type="text"  placeholder='price of the product in ksh.' />
+              <input type="text"  placeholder='price of the product in ksh.' />
             </div><div className="name-container">
               <label>Quantity</label>
-              <img type="number" placeholder='number of items in the store' />
+              <input type="number" placeholder='number of items in the store' />
             </div>
           </div>
-          <button className="okay-btn" onClick={onClose}>
+          <div className='btn-div'>
+            <button className="okay-btn" onClick={onClose}>
             Okay
           </button>
+          </div>
         </main>
       </Modal>
     </>
