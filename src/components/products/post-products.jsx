@@ -125,7 +125,7 @@ function PostProducts() {
       // console.log(err)
 
       if (err.response.status === 401) {
-        toast.error("Not Authorized to create project");
+        toast.error("Not Authorized");
         navigate("/login");
       } else if (err.response.status === 404) {
         toast.error("User cannot be found");
@@ -153,7 +153,7 @@ function PostProducts() {
         setProducts(getProducts.data.AllProducts);
       } catch (err) {
         if (err.response.status === 401) {
-          toast.error("Not Authorized to get project");
+          toast.error("Not Authorized");
           navigate("/login");
         } else if (err.response.status === 500) {
           toast.error("A problem with our servers, hang on");
@@ -163,6 +163,45 @@ function PostProducts() {
 
     UserProducts();
   }, []);
+
+  const handleDelete = async(productId) =>{
+
+    try{
+
+      const token = Cookies.get().vendorToken;
+
+      const deleteProduct = await axios.delete(`http://localhost:3005/api/vendor/products/deleteproduct/${productId}`, { headers: { Authorization: `Bearer ${token}` } })
+
+      // console.log(deleteProduct)
+
+      if (deleteProduct.status === 200) {
+        toast.success("Product was deleted successfully");
+      }
+
+      window.location.reload()
+
+
+
+    }
+
+    catch(err){
+      // console.log(err)
+
+      if (err.response.status === 401) {
+        toast.error("Not Authorized");
+        navigate("/login");
+      } else if (err.response.status === 500) {
+        toast.error("A problem with our servers, hang on");
+      } else if (err.response.status === 404) {
+        toast.error("The product cannot seem to be found");
+      } else {
+        toast.error("Check your network connection");
+      }
+    }
+
+
+
+  }
   return (
     <>
       <section className="post-products">
@@ -281,7 +320,7 @@ function PostProducts() {
                             <button className="edit">Edit</button>
                           </td>
                           <td>
-                            <button className="delete">Delete</button>
+                            <button className="delete" onClick={()=>{handleDelete(item._id)}}>Delete</button>
                           </td>
                         </tr>
                       ))
