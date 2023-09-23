@@ -136,6 +136,47 @@ function PostProducts() {
       setLoading(false);
     }
   };
+
+
+  const [products, setProducts] = useState([])
+
+  useEffect(()=>{
+
+    const UserProducts = async()=>{
+
+      
+      
+      try{
+        
+        const token = Cookies.get().vendorToken;
+  
+        const getProducts = await axios.get('http://localhost:3005/api/vendor/products/getproducts', {headers: {Authorization: `Bearer ${token}`}})
+        // console.log(getProducts.data.AllProducts)
+  
+        setProducts(getProducts.data.AllProducts)
+
+
+
+      }
+
+      catch(err){
+
+        if (err.response.status === 401) {
+          toast.error("Not Authorized to get project");
+          navigate("/login");
+        } else if (err.response.status === 500) {
+          toast.error("A problem with our servers, hang on");
+        }
+
+
+      }
+    }
+
+    UserProducts()
+
+
+
+  },[])
   return (
     <>
       <section className="post-products">
@@ -234,30 +275,20 @@ function PostProducts() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>
-                        <img src={pic1} alt="image" className="product-image" />
-                      </td>
-                      <td>Product-1</td>
-                      <td>ksh.10</td>
-                      <td>40</td>
-                      <td>
-                        <button className="edit">Edit</button>
-                      </td>
-                      <td>
-                        <button className="delete">Delete</button>
-                      </td>
-                    </tr>
 
-                    <tr>
-                      <td>2</td>
+                    {products.length === 0 ?(
+                      <p>You have not yet created a product</p>
+                    ):(
+                      products.map((item, index)=>(
+                        
+                      <tr key={item._id}>
+                      <td>{index+1}</td>
                       <td>
-                        <img src={pic1} alt="image" className="product-image" />
+                        <img src={item.image} alt="image" className="product-image" />
                       </td>
-                      <td>Product-2</td>
-                      <td>ksh.10</td>
-                      <td>40</td>
+                      <td>{item.name}</td>
+                      <td>ksh {item.price}</td>
+                      <td>{item.quantity}</td>
                       <td>
                         <button className="edit">Edit</button>
                       </td>
@@ -265,6 +296,11 @@ function PostProducts() {
                         <button className="delete">Delete</button>
                       </td>
                     </tr>
+                      ))
+                    )
+                    }
+
+                   
                   </tbody>
                 </table>
               </div>
