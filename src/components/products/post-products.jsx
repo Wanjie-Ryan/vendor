@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import UpdateProductModal from './updateModal'
 function PostProducts() {
   const navigate = useNavigate();
 
@@ -195,6 +196,21 @@ function PostProducts() {
       }
     }
   };
+
+
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [showUpdateModal, setShowUpdateModal] = useState(false)
+
+  const openModal = (productId)=>{
+    setSelectedProductId(productId)
+    setShowUpdateModal(true)
+  }
+
+  const closeModal = ()=>{
+    setSelectedProductId(null)
+    setShowUpdateModal(false)
+  }
+
   return (
     <>
       <section className="post-products">
@@ -310,7 +326,7 @@ function PostProducts() {
                           <td>ksh {item.price}</td>
                           <td>{item.quantity}</td>
                           <td>
-                            <button className="edit">Edit</button>
+                            <button className="edit" onClick={()=>{openModal(item._id)}}>Edit</button>
                           </td>
                           <td>
                             <button
@@ -332,6 +348,8 @@ function PostProducts() {
           </div>
         </div>
       </section>
+
+      <UpdateProductModal isOpen={showUpdateModal} onClose={closeModal} id={selectedProductId}/>
     </>
   );
 }
