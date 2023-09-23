@@ -23,9 +23,25 @@ function Register() {
 
   const { user, loading, error, dispatch } = useContext(RegContext);
 
+  const TogglePwd = () => {
+    setCheckpwd(!checkpwd);
+  };
+
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
 
   const handleContact = (phoneNumber) => {
     setContact(phoneNumber);
+  };
+
+  const handlePwd = (e) => {
+    setPwd(e.target.value);
   };
 
   return (
@@ -41,7 +57,7 @@ function Register() {
                 <label>Name</label>
               </div>
               <div className="input-container">
-                <input type="text" placeholder="enter your name" />
+                <input type="text" placeholder="enter your name" required value={name}  onChange={handleName}/>
               </div>
             </div>
 
@@ -50,7 +66,8 @@ function Register() {
                 <label>Email</label>
               </div>
               <div className="input-container">
-                <input type="email" placeholder="enter your Email" />
+                <input type="email" placeholder="enter your Email" required  value={email}
+                onChange={handleEmail}/>
               </div>
             </div>
 
