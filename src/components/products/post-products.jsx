@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import "./pp.css";
-import { Link } from "react-router-dom";
+import { AiOutlineEye, AiOutlineLoading3Quarters } from "react-icons/ai";
 import pic1 from "../../images/kitchen-1.jpg";
 import { FaFileCsv } from "react-icons/fa";
+import axios from "axios";
 import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
+
 function PostProducts() {
   const [showForm, setShowForm] = useState(true);
   const [showTable, setShowTable] = useState(false);
@@ -17,6 +22,59 @@ function PostProducts() {
     setShowForm(false);
     setShowTable(true);
   };
+
+  const [image, setImage] = useState()
+  const [name, setName] = useState()
+  const [price, setPrice] = useState()
+  const [quantity, setQuantity] = useState()
+
+
+  const handleName =(e)=>{
+    setName(e.target.value)
+  }
+
+  const handlePrice =(e)=>{
+    setPrice(e.target.value)
+  }
+
+  const handleQuantity = (e)=>{
+    setQuantity(e.target.value)
+  }
+
+  const CreateProduct = async(e)=>{
+
+    e.preventDefault()
+
+    if(!image || !name || !price|| !quantity){
+       toast.error('All fields are reuired!')
+       return
+    }
+
+    try{
+
+      
+
+
+    }
+
+    catch(err){
+
+
+    }
+
+    finally{
+
+
+    }
+
+
+
+
+
+
+
+
+  }
   return (
     <>
       <section className="post-products">
@@ -34,7 +92,7 @@ function PostProducts() {
 
           <div className="content-container">
             {showForm && (
-              <form className="create-product-section">
+              <form className="create-product-section" onSubmit={CreateProduct}>
                 <div className="product-name">
                   <label>Product Image</label>
                   <input
@@ -42,10 +100,9 @@ function PostProducts() {
                     id="imageFile"
                     accept="image/*"
                     required
-
-                    //   onChange={(e) => {
-                    //     setImage(e.target.files[0]);
-                    //   }}
+                      onChange={(e) => {
+                        setImage(e.target.files[0]);
+                      }}
                   />
                 </div>
 
@@ -55,6 +112,8 @@ function PostProducts() {
                     type="text"
                     required
                     placeholder="name of the product"
+                    value={name}
+                    onChange={handleName}
                   />
                 </div>
 
@@ -64,6 +123,8 @@ function PostProducts() {
                     type="text"
                     required
                     placeholder="price of the product in ksh."
+                    value={price}
+                    onChange={handlePrice}
                   />
                 </div>
 
@@ -73,6 +134,8 @@ function PostProducts() {
                     type="number"
                     required
                     placeholder="number of items in your store"
+                    value={quantity}
+                    onChange={handleQuantity}
                   />
                 </div>
 
