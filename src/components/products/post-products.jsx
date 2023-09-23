@@ -10,6 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import UpdateProductModal from './updateModal'
+import jsPDF from 'jspdf';
+
 function PostProducts() {
   const navigate = useNavigate();
 
@@ -211,6 +213,34 @@ function PostProducts() {
     setShowUpdateModal(false)
   }
 
+  const generatePDF = ()=>{
+
+    const doc = new jsPDF()
+
+    doc.text('Product List', 10, 10);
+
+    let y = 20
+
+    products.forEach((product, index) => {
+      y += 10; 
+      doc.text(`Product ${index + 1}:`, 10, y);
+      y += 5;
+      doc.text(`Name: ${product.name}`, 15, y);
+      y += 5;
+      doc.text(`Price: ksh ${product.price}`, 15, y);
+      y += 5;
+      doc.text(`Quantity: ${product.quantity}`, 15, y);
+      y += 10; 
+    });
+
+
+
+    doc.save('your_product_list.pdf');
+
+
+
+  }
+
   return (
     <>
       <section className="post-products">
@@ -291,7 +321,7 @@ function PostProducts() {
                   <button className="csv">
                     <FaFileCsv /> Export as CSV
                   </button>
-                  <button className="pdf">
+                  <button className="pdf" onClick={generatePDF}>
                     <BsFillFileEarmarkPdfFill />
                     Export as PDF
                   </button>
