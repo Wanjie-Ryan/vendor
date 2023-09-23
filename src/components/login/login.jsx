@@ -59,8 +59,8 @@ function Login() {
       // console.log(response)
 
       const loginDetails = {
-        id: response.data.UserLogin._id,
-        name: response.data.UserLogin.name,
+        id: response.data.vendorLogin._id,
+        name: response.data.vendorLogin.name,
       };
 
       sessionStorage.setItem("VendorLoginDetails", JSON.stringify(loginDetails));
@@ -89,6 +89,8 @@ function Login() {
 
     }
     catch(err){
+
+      // console.log(err)
 
       dispatch({ type: "logFail", payload: err });
 
