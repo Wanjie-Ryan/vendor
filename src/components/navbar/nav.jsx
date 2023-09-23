@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./nav.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { BiMenu } from "react-icons/bi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -10,6 +10,35 @@ function Navbar() {
   const [asideOpen, setAsideOpen] = useState(false);
   const toggleAside = () => {
     setAsideOpen(!asideOpen);
+  };
+
+  const LogDetails = JSON.parse(sessionStorage.getItem("VendorLoginDetails"));
+
+  let username
+
+  if (LogDetails) {
+    username = LogDetails.name;
+  }
+
+  const [greeting, setGreeting] = useState("");
+
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+
+    if (currentHour >= 5 && currentHour < 12) {
+      setGreeting("Good Morning");
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting("Good Afternoon");
+    } else {
+      setGreeting("Good Evening");
+    }
+  }, []);
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    Cookies.remove("vendorToken");
+
+    navigate("/login");
   };
 
   return (
@@ -42,7 +71,7 @@ function Navbar() {
             </div>
 
             <div className="nav-main__right__logout">
-              <p>Logout</p>
+              <p onClick={handleLogout}>Logout</p>
             </div>
 
             <div className="nav-main__right__profile">
@@ -53,7 +82,7 @@ function Navbar() {
                   <BsPersonCircle />
                 )}
               </Link>
-              <p>Good Afternoon Kibet</p>
+              <p>{greeting} {username}</p>
             </div>
 
             <div className="nav-main__right__dashboard-menu">
@@ -101,11 +130,11 @@ function Navbar() {
                   <BsPersonCircle />
                 )}
               </Link>
-              <p>Good Afternoon Kibet</p>
+              <p> {greeting} {username}</p>
             </div>
 
             <div className="main-aside__inner__top__logout">
-              <p>Logout</p>
+              <p onClick={handleLogout}>Logout</p>
             </div>
           </div>
         </div>
