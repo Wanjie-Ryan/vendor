@@ -7,7 +7,7 @@ function PostProductsPages() {
     <>
       <Navbar />
       <PostProducts />
-    </>
+     </>
   );
 }
 
