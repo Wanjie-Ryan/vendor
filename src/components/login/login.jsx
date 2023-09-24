@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 function Login() {
   const [email, setEmail] = useState();
   const [pwd, setPwd] = useState();
-  const [load, setLoad] = useState();
+  const [load, setLoad] = useState(false);
   const [errMsg, seterrMsg] = useState();
   const [showPwd, setShowPwd] = useState(false);
 
