@@ -4,6 +4,7 @@ import RegisterPagesComponent from "./pages/register/register";
 import LoginPagesComponent from "./pages/login/login";
 import DashboardPagesComponent from "./pages/dashboard/dash";
 import PostProductsComponent from "./pages/products/post-products";
+import WalletComponent from "./pages/wallet/wallet";
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
           <Route path="/login" element={<LoginPagesComponent />} />
           <Route path="/dashboard" element={<DashboardPagesComponent />} />
           <Route path="/products" element={<PostProductsComponent />} />
+          <Route path="/wallet" element={<WalletComponent />} />
         </Routes>
       </BrowserRouter>
     </>
