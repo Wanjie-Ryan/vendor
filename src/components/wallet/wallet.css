@@ -39,6 +39,16 @@
   font-weight: bold;
 }
 
+.receive-payment{
+
+  padding: 3px;
+  cursor: pointer;
+  background-color: #BEADFA;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .pdf {
   padding: 5px;
   cursor: pointer;
