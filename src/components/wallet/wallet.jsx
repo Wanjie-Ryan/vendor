@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./wallet.css";
 import { FaFileCsv } from "react-icons/fa";
 import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
-
+import axios from 'axios'
 function Wallet() {
   return (
     <>
@@ -35,7 +35,7 @@ function Wallet() {
             <tbody>
               <tr>
                 <td>1</td>
-                <td>image</td>
+                <td><img src='' alt='image' className='product-image'/></td>
                 <td>xxx</td>
                 {/* <td>3</td> */}
                 <td>Ksh. 10</td>
