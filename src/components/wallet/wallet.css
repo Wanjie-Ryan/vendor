@@ -39,11 +39,10 @@
   font-weight: bold;
 }
 
-.receive-payment{
-
+.receive-payment {
   padding: 3px;
   cursor: pointer;
-  background-color: #BEADFA;
+  background-color: #beadfa;
   border-radius: 5px;
   font-size: 15px;
   font-weight: bold;
