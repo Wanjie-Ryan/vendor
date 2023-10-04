@@ -100,7 +100,7 @@ function Wallet() {
                       {" "}
                       {buyerNames.map((buyer, buyerIndex) => (
                         <span key={buyer._id}>
-                          <p className='buyers-names'> &bull; {buyer.name}</p>
+                          <p className="buyers-names"> &bull; {buyer.name}</p>
                         </span>
                       ))}
                     </td>
