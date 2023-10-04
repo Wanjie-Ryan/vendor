@@ -12,7 +12,7 @@ function Wallet() {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [buyerNames, setBuyerNames] = useState([])
-  console.log(products);
+  // console.log(products);
 
   useEffect(() => {
     const getPurchasedProducts = async () => {
@@ -31,24 +31,18 @@ function Wallet() {
         const purchasedProducts = response.data.purchasedProducts
 
         const uniqueBuyerIds = [...new Set(purchasedProducts.flatMap(product => product.boughtBy))];
+        // console.log(uniqueBuyerIds)
 
-        const userPromises = uniqueBuyerIds.map(async (userId) => {
-          const userResponse = await axios.get(`http://localhost:3005/api/chpter/getbuyers/${userId}`, {headers:{Authorization: `Bearer ${token}`}});
-          return { userId, buyerName: userResponse.data.name }; 
-        });
+      
 
-        const userData = await Promise.all(userPromises);
-
-        const userNamesMap = {};
-      userData.forEach((user) => {
-        userNamesMap[user.userId] = user.buyerName;
-      });
-
-      setBuyerNames(userNamesMap);
+      const queryParam = uniqueBuyerIds.join('&buyerIds=')
+      const buyerDetailsResponse = await axios.get(`http://localhost:3005/api/chpter/getbuyers?buyerIds=${queryParam}`, {headers:{Authorization: `Bearer ${token}`}})
+      // console.log(buyerDetailsResponse.data.buyer)
+      setBuyerNames(buyerDetailsResponse.data.buyer)
 
 
       } catch (err) {
-        // console.log(err)
+        console.log(err)
         if (err.response.status === 401) {
           toast.error("Not Authorized");
           navigate("/login");
