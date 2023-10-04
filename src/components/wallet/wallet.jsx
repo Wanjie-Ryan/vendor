@@ -58,6 +58,38 @@ function Wallet() {
     getPurchasedProducts();
   }, []);
 
+  const InitiatePayout = async()=>{
+
+    const payOutData = {
+
+      "client_details": {
+        "full_name": "John Doe",
+        "phone_number": "254700123123",
+        "email": "johndoe@mail.com"
+      },
+      "destination_details": {
+        "country_code": "KE",
+        "mobile_number": "254700123123",
+        "wallet_type": "mpesa"
+      },
+      "transfer_details": {
+        "currency_code": "KES",
+        "amount": 100.25
+      },
+      "callback_details": {
+         "notify_customer": true,
+        "payout_reference": "DEF456",
+        "callback_url": "https://example.com/callback"
+      }
+      
+    }
+
+
+
+
+
+  }
+
   const generatePDF = (data) => {
     const doc = new jsPDF();
     doc.text("Purchased products List", 10, 10);
