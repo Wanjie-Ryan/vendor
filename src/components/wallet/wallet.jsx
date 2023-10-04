@@ -58,60 +58,46 @@ function Wallet() {
     getPurchasedProducts();
   }, []);
 
-  const InitiatePayout = async()=>{
+  const InitiatePayout = async () => {
+    try {
+      const LogDetails = JSON.parse(
+        sessionStorage.getItem("VendorLoginDetails")
+      );
+      let id;
+      let contact;
 
-    
-
-
-    try{
-
-  const LogDetails = JSON.parse(sessionStorage.getItem("VendorLoginDetails"));
-let id 
-let contact
-
-if(LogDetails){
-  id = LogDetails.id
-  contact = LogDetails.contact
-}
-
-      for(const buyer of buyerNames){
-
-        const payOutData = {
-          
-        "client_details": {
-          "full_name": buyer.name,
-          "phone_number": buyer.contact,
-          "email": buyer.email
-        },
-        "destination_details": {
-          "country_code": "KE",
-          "mobile_number": contact,
-          "wallet_type": "mpesa"
-        },
-        "transfer_details": {
-          "currency_code": "KES",
-          "amount": 100.25
-        },
-        "callback_details": {
-          "notify_customer": true,
-          "payout_reference": id,
-          "callback_url": "https://example.com/callback"
-        }
-        
+      if (LogDetails) {
+        id = LogDetails.id;
+        contact = LogDetails.contact;
       }
+
+      for (const buyer of buyerNames) {
+        const payOutData = {
+          client_details: {
+            full_name: buyer.name,
+            phone_number: buyer.contact,
+            email: buyer.email,
+          },
+          destination_details: {
+            country_code: "KE",
+            mobile_number: contact,
+            wallet_type: "mpesa",
+          },
+          transfer_details: {
+            currency_code: "KES",
+            amount: 100.25,
+          },
+          callback_details: {
+            notify_customer: true,
+            payout_reference: id,
+            callback_url: "https://example.com/callback",
+          },
+        };
+      }
+    } catch (err) {
+      console.log(err);
     }
-  
-
-    }  
-    catch(err){
-
-      console.log(err)
-    }  
-
-
-
-
-  }
+  };
 
   const generatePDF = (data) => {
     const doc = new jsPDF();
