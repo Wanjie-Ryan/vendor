@@ -11,7 +11,7 @@ function Wallet() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  const [buyerNames, setBuyerNames] = useState([])
+  const [buyerNames, setBuyerNames] = useState([]);
   // console.log(products);
 
   useEffect(() => {
@@ -28,21 +28,22 @@ function Wallet() {
 
         setProducts(response.data.purchasedProducts);
 
-        const purchasedProducts = response.data.purchasedProducts
+        const purchasedProducts = response.data.purchasedProducts;
 
-        const uniqueBuyerIds = [...new Set(purchasedProducts.flatMap(product => product.boughtBy))];
+        const uniqueBuyerIds = [
+          ...new Set(purchasedProducts.flatMap((product) => product.boughtBy)),
+        ];
         // console.log(uniqueBuyerIds)
 
-      
-
-      const queryParam = uniqueBuyerIds.join('&buyerIds=')
-      const buyerDetailsResponse = await axios.get(`http://localhost:3005/api/chpter/getbuyers?buyerIds=${queryParam}`, {headers:{Authorization: `Bearer ${token}`}})
-      // console.log(buyerDetailsResponse.data.buyer)
-      setBuyerNames(buyerDetailsResponse.data.buyer)
-
-
+        const queryParam = uniqueBuyerIds.join("&buyerIds=");
+        const buyerDetailsResponse = await axios.get(
+          `http://localhost:3005/api/chpter/getbuyers?buyerIds=${queryParam}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        // console.log(buyerDetailsResponse.data.buyer)
+        setBuyerNames(buyerDetailsResponse.data.buyer);
       } catch (err) {
-        console.log(err)
+        // console.log(err);
         if (err.response.status === 401) {
           toast.error("Not Authorized");
           navigate("/login");
@@ -95,12 +96,14 @@ function Wallet() {
                       />
                     </td>
                     <td>{item.name}</td>
-                    <td> {item.boughtBy.map((userId, buyerIndex) => (
-          <span key={userId}>
-            {buyerNames[userId]}
-            {buyerIndex < item.boughtBy.length - 1 && ', '}
-          </span>
-        ))}</td>
+                    <td>
+                      {" "}
+                      {buyerNames.map((buyer, buyerIndex) => (
+                        <span key={buyer._id}>
+                          <p className='buyers-names'> &bull; {buyer.name}</p>
+                        </span>
+                      ))}
+                    </td>
                     <td>{`ksh. ${item.price}`}</td>
                     <td className="paid">paid</td>
                     <td>

@@ -69,6 +69,11 @@
   font-weight: bold;
 }
 
+.buyers-names{
+  margin-top:10px;
+  font-weight:600;
+}
+
 @media screen and (max-width: 568px) {
   .post-products-inner {
     width: 100%;
