@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
-
+import "jspdf-autotable";
 function Wallet() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -61,6 +61,31 @@ function Wallet() {
   const generatePDF = (data)=>{
 
     const doc = new jsPDF()
+    doc.text("Purchased products List", 10, 10);
+
+    // Loop through the products and add details to the PDF
+    let yPos = 30; // Y position for the first detail
+    products.forEach((item, index) => {
+      doc.text(`No: ${index +1}`, 10,yPos )
+      doc.text(`Product Name: ${item.name}`, 10, yPos +10);
+      // doc.text(`Product Name: ${item.image}`, 10, yPos);
+      // doc.text(`BoughtBy:${}`)
+      doc.text(`Amount: Ksh. ${item.price}`, 10, yPos + 20);
+      doc.text(`Payment Status: Paid`, 10, yPos + 30);
+
+      yPos += 50; // Adjust Y position for the next detail
+    });
+
+
+    doc.save('bought_products.pdf')
+
+
+
+
+  }
+
+  const generateCSV = (data)=>{
+
 
 
   }
@@ -69,10 +94,10 @@ function Wallet() {
       <section className="records">
         <div className="table-container">
           <div className="table-btns">
-            <button className="csv">
+            <button className="csv"  onClick={()=>generateCSV(products)}>
               <FaFileCsv /> Export as CSV
             </button>
-            <button className="pdf">
+            <button className="pdf" onClick={()=>generatePDF(products)}>
               <BsFillFileEarmarkPdfFill />
               Export as PDF
             </button>
