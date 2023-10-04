@@ -15,6 +15,13 @@ function Wallet() {
   const [products, setProducts] = useState([]);
   const [buyerNames, setBuyerNames] = useState([]);
   // console.log(products);
+  let totalAmount
+  for(const productDetails of products){
+
+    totalAmount = productDetails.price * productDetails.boughtBy.length
+
+  }
+  // const totalAmount  = products.length * buyerNames.length
 
   useEffect(() => {
     const getPurchasedProducts = async () => {
@@ -85,7 +92,7 @@ function Wallet() {
           },
           transfer_details: {
             currency_code: "KES",
-            amount: 100.25,
+            amount: totalAmount,
           },
           callback_details: {
             notify_customer: true,
@@ -192,7 +199,7 @@ function Wallet() {
                         </span>
                       ))}
                     </td>
-                    <td>{`ksh. ${item.price}`}</td>
+                    <td>{`ksh. ${totalAmount}`}</td>
                     <td className="paid">paid</td>
                     <td>
                       <button className="receive-payment">
