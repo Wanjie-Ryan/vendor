@@ -57,6 +57,7 @@ function Login() {
       const loginDetails = {
         id: response.data.vendorLogin._id,
         name: response.data.vendorLogin.name,
+        contact: response.data.vendorLogin.contact,
       };
 
       sessionStorage.setItem(

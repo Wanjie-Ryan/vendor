@@ -60,30 +60,44 @@ function Wallet() {
 
   const InitiatePayout = async()=>{
 
-    const payOutData = {
+    
 
-      "client_details": {
-        "full_name": "John Doe",
-        "phone_number": "254700123123",
-        "email": "johndoe@mail.com"
-      },
-      "destination_details": {
-        "country_code": "KE",
-        "mobile_number": "254700123123",
-        "wallet_type": "mpesa"
-      },
-      "transfer_details": {
-        "currency_code": "KES",
-        "amount": 100.25
-      },
-      "callback_details": {
-         "notify_customer": true,
-        "payout_reference": "DEF456",
-        "callback_url": "https://example.com/callback"
+
+    try{
+
+      for(const buyer of buyerNames){
+
+        const payOutData = {
+          
+        "client_details": {
+          "full_name": buyer.name,
+          "phone_number": buyer.contact,
+          "email": buyer.email
+        },
+        "destination_details": {
+          "country_code": "KE",
+          "mobile_number": "254700123123",
+          "wallet_type": "mpesa"
+        },
+        "transfer_details": {
+          "currency_code": "KES",
+          "amount": 100.25
+        },
+        "callback_details": {
+          "notify_customer": true,
+          "payout_reference": "DEF456",
+          "callback_url": "https://example.com/callback"
+        }
+        
       }
-      
     }
+  
 
+    }  
+    catch(err){
+
+      console.log(err)
+    }  
 
 
 
