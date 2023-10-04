@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import jsPDF from "jspdf";
+
 function Wallet() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -55,6 +57,13 @@ function Wallet() {
 
     getPurchasedProducts();
   }, []);
+
+  const generatePDF = (data)=>{
+
+    const doc = new jsPDF()
+
+
+  }
   return (
     <>
       <section className="records">
