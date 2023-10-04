@@ -59,7 +59,7 @@ function Navbar() {
             </div>
 
             <div className="nav-main__right__dashboard">
-              <Link to="/wallet" title="chats" className="link-dashboard">
+              <Link to="/wallet" className="link-dashboard">
                 <p>Wallet</p>
               </Link>
             </div>

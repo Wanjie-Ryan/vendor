@@ -11,6 +11,7 @@ function Wallet() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
+  const [buyerNames, setBuyerNames] = useState([])
   console.log(products);
 
   useEffect(() => {
@@ -26,6 +27,26 @@ function Wallet() {
         // console.log(response.data.purchasedProducts)
 
         setProducts(response.data.purchasedProducts);
+
+        const purchasedProducts = response.data.purchasedProducts
+
+        const uniqueBuyerIds = [...new Set(purchasedProducts.flatMap(product => product.boughtBy))];
+
+        const userPromises = uniqueBuyerIds.map(async (userId) => {
+          const userResponse = await axios.get(`http://localhost:3005/api/chpter/getbuyers/${userId}`, {headers:{Authorization: `Bearer ${token}`}});
+          return { userId, buyerName: userResponse.data.name }; 
+        });
+
+        const userData = await Promise.all(userPromises);
+
+        const userNamesMap = {};
+      userData.forEach((user) => {
+        userNamesMap[user.userId] = user.buyerName;
+      });
+
+      setBuyerNames(userNamesMap);
+
+
       } catch (err) {
         // console.log(err)
         if (err.response.status === 401) {
@@ -80,7 +101,12 @@ function Wallet() {
                       />
                     </td>
                     <td>{item.name}</td>
-                    <td>yyy</td>
+                    <td> {item.boughtBy.map((userId, buyerIndex) => (
+          <span key={userId}>
+            {buyerNames[userId]}
+            {buyerIndex < item.boughtBy.length - 1 && ', '}
+          </span>
+        ))}</td>
                     <td>{`ksh. ${item.price}`}</td>
                     <td className="paid">paid</td>
                     <td>
