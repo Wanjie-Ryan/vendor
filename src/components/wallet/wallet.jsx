@@ -65,6 +65,15 @@ function Wallet() {
 
     try{
 
+  const LogDetails = JSON.parse(sessionStorage.getItem("VendorLoginDetails"));
+let id 
+let contact
+
+if(LogDetails){
+  id = LogDetails.id
+  contact = LogDetails.contact
+}
+
       for(const buyer of buyerNames){
 
         const payOutData = {
@@ -76,7 +85,7 @@ function Wallet() {
         },
         "destination_details": {
           "country_code": "KE",
-          "mobile_number": "254700123123",
+          "mobile_number": contact,
           "wallet_type": "mpesa"
         },
         "transfer_details": {
@@ -85,7 +94,7 @@ function Wallet() {
         },
         "callback_details": {
           "notify_customer": true,
-          "payout_reference": "DEF456",
+          "payout_reference": id,
           "callback_url": "https://example.com/callback"
         }
         
