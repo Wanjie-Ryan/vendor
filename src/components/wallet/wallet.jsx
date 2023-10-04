@@ -79,32 +79,26 @@ function Wallet() {
   };
 
   const generateCSV = (data) => {
-    if(data.length ===0){
-      return (
-        'No products purchased yet'
-      )
+    if (data.length === 0) {
+      return "No products purchased yet";
     }
 
     const csvData = [
-      ['Product', 'Amount', 'Payment Status'],
-      ...data.map((item,index)=>[
-        item.name,
-        `Ksh. ${item.price}`,
-        "paid"
-      ])
-    ]
+      ["Product", "Amount", "Payment Status"],
+      ...data.map((item, index) => [item.name, `Ksh. ${item.price}`, "paid"]),
+    ];
 
-    const csvBlob = new Blob([csvData.map((row) => row.join(',')).join('\n')], {
-      type: 'text/csv',
+    const csvBlob = new Blob([csvData.map((row) => row.join(",")).join("\n")], {
+      type: "text/csv",
     });
 
     const csvUrl = URL.createObjectURL(csvBlob);
 
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = csvUrl;
-    link.download = 'purchased_products.csv';
+    link.download = "purchased_products.csv";
     link.click();
-  
+
     // Clean up by revoking the URL
     URL.revokeObjectURL(csvUrl);
   };
