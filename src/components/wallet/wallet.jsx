@@ -97,9 +97,13 @@ function Wallet() {
           callback_details: {
             notify_customer: true,
             payout_reference: id,
-            callback_url: "https://example.com/callback",
+            callback_url: "https://8dfb-154-79-248-134.ngrok-free.app/api/chpterpayouts/createpayout",
           },
         };
+
+        const payoutResponse = await axios.post('https://api.chpter.co/v1/payout/mobile-wallet',payOutData, {headers:{"Content-Type":"application/json", "Api-key":"pk_test_d39abf62f0e7f5b39fd55bcd19579aaa7caeab3ba6dd59c80d2c4ba5df38a106"}})
+
+        console.log(payoutResponse)
       }
     } catch (err) {
       console.log(err);
@@ -202,7 +206,7 @@ function Wallet() {
                     <td>{`ksh. ${totalAmount}`}</td>
                     <td className="paid">paid</td>
                     <td>
-                      <button className="receive-payment">
+                      <button className="receive-payment" onClick={InitiatePayout}>
                         Receive Payment
                       </button>
                     </td>
